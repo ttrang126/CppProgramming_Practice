@@ -4,13 +4,15 @@
 A CGPA Calculator is a simple yet useful C++ project that helps students calculate their Cumulative Grade Point Average (CGPA) based on their subject grades and credits. The program takes input for multiple subjects, applies the CGPA formula, and displays the final result in a user-friendly format.
 
 ### Feature
-1. Input Subjects by Semester – Users can enter the number of semesters and for each semester, provide subject details (name, grade point, credit hours).
+1. Input Subjects by Semester – Users can input subjects for each semester including name, midterm score, final score, and credit hours.
 
-2. Calculate GPA – For every semester, the program calculates GPA as the weighted average of grade points.
+2. 10-to-4 GPA Conversion – The program calculates the average score using 40% midterm + 60% final, and maps it to the 4.0 GPA scale with letter grades (A+, B, C, etc.).
 
-3. Calculate CGPA – After all semesters are entered, the program computes CGPA as the overall weighted average.
+3. Calculate GPA – GPA is computed as a weighted average of all subject grade points in the semester.
 
-4. Display Results – The program displays GPA for each semester or the final CGPA.
+4. Calculate CGPA – CGPA is calculated as the overall weighted average GPA across all entered semesters.
+
+5. Display Results – Output includes a subject report for each semester and a semester list for CGPA summary.
 
 ### Algorithm
 
@@ -30,20 +32,23 @@ Read the user's choice.
 
 Case 1: Calculate GPA for a new semester
 1. Ask User for Number of subjects in this semester**
-2. For each subject: Read Subject Name, Grade Point, Credit Hours.
+2. For each subject: 
+    - Input: Subject name, credit hours, midterm score, final score.
+    - Compute:
+        ```AverageScore = 0.4 × Midterm + 0.6 × Final```
+    - Convert to GPA and letter grade using a grading table.
 3. Compute GPA for this semester:
 
    ```GPA = Total Grade Points / Total Credit Hours```
 
-   Save GPA result along with total credit hours for this semester to a list for later CGPA computation.
+4. Store semester GPA and total credits to a list.
 
-4. Confirm GPA has been saved.
+5. Display the subject table and GPA for the semester.
 
 Case 2: Calculate CGPA these semester
-1. If no semesters saved yet → display message: "No GPA data available."
+1. If no semesters saved yet → display message: "No semester available."
 2. Else:
-   - Display a list of all saved semesters with their GPA.
-   - Ask the user to select which semesters to include in CGPA calculation (e.g., by semester numbers).
+   - Display a list of all saved semesters (name, credits, GPA)
    - Compute CGPA:
 
      ```CGPA = (Sum of (GPA × credit hours) for selected semesters) / (Sum of credit hours for selected semesters)```
